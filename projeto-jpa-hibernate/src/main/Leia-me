@@ -55,3 +55,9 @@ banco de dados. Vai ser essa classe que irá ler o arquivo persistence.xml, deix
 
 <version>5.2.6.Final</version>
 
+----------------------------------------
+
+É preciso declarar o arquivo de entidade para a persistencia no banco de dados. Essa declaração é a tag class
+e o seu valor é o caminho dessa entidade. Essa declaração é feito no arquivo persistence.xml.
+Ex: <class>br.com.projetoJpaHibernate.model.UsuarioPessoa</class>
+

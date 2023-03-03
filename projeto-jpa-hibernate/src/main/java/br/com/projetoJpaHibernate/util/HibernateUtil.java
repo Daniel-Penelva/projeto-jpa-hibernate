@@ -1,4 +1,4 @@
-package br.com.projetoJpaHibernate;
+package br.com.projetoJpaHibernate.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
