@@ -23,3 +23,30 @@ mouse em cima do projeto e clica em 'porperties' depois vai em 'Project Facets' 
 e marque a opção 'JPA'. Depois procure a aba 'Runtimes' e coloque o jdk que está instalado e por fim 'apply and close'.
 
 É nesse arquivo, persistence.xml, que irá configurar toda a comunicação com o banco de dados.
+
+----------------------------------------
+
+Configurando as propriedades do arquivo persistence.xml para a comunicação com o banco de dados.
+
+1 - O nome do Driver do banco de dados no caso postgresql
+<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+
+2 - Endereço (url) para criar o banco de dados cujo nome vai ser projetoJpaHibernate
+<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/projetoJpaHibernate"/>
+OBS. Não esquece de criar o banco de dados 'projetoJpaHibernate' no postgresql
+
+3 - Para o hibernate manipular a parte de mapeamento de objeto relacional vai ser preciso dizer o tipo de dialeto usado
+<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+4 - O nome do usuário do banco de dados
+<property name="hibernate.connection.username" value="postgres"/>
+
+5 - Senha (password) do banco de dados
+<property name="hibernate.connection.password" value="admin"/>
+
+6 - Propriedade que ajuda a atualizar automaticamente as manipulações feitas no banco de dados
+    (Por exemplo, criar automaticamente as tabelas no banco de dados) 
+<property name="hibernate.hbm2ddl.auto" value="update"/>
+
+
+
