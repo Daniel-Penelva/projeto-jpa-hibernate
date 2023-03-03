@@ -1,0 +1,25 @@
+MAPEAMENTO OBJETO RELACIONAL (ORM)
+
+Pode-se trabalhar com apenas o JPA ou com o JPA e o Hibernate.
+
+O Hibernate abstrai o seu código SQL, toda a camada JDBC e o SQL será gerado em tempo de execução.
+
+
+    @Entity            AUTOMATIZA PROCESSOS          SQL
+  Classe Usuário   ----------------------------> Tabela Usuário
+    [JAVA]                                          [TABELA]
+
+LINGUAGEM HQL
+O Hibernate vem com uma poderosa linguagem de consulta (HQL) que é muito parecida com o SQL. No entanto, comparado com 
+o SQL o HQL é totalmente orientado à objetos, e compreende noções de herança, polimorfismo e associações.
+
+Criar um projeto Maven (OBS. Não esquecer de configurar o java compiler e BuildPath com o JDK da sua máquina instalado - Clica com o botão 
+direito do mouse em cima do projeto, vai em properties e procure as abas de configuração dita acima). 
+
+Vou adiicionar as dependencias do junit, do postgresql (version 9.5) e o hibernate/jpa.
+
+IMPORTANTE!!! Temos que criar um arquivo de persistence.xml do JPA, e para fazer isso, vai com o botão direito do 
+mouse em cima do projeto e clica em 'porperties' depois vai em 'Project Facets' e clica em 'Convert to Faceted form...' 
+e marque a opção 'JPA'. Depois procure a aba 'Runtimes' e coloque o jdk que está instalado e por fim 'apply and close'.
+
+É nesse arquivo, persistence.xml, que irá configurar toda a comunicação com o banco de dados.
