@@ -48,5 +48,10 @@ OBS. Não esquece de criar o banco de dados 'projetoJpaHibernate' no postgresql
     (Por exemplo, criar automaticamente as tabelas no banco de dados) 
 <property name="hibernate.hbm2ddl.auto" value="update"/>
 
+----------------------------------------
 
+A classe HibernateUtil vai ser chamada para quando o projeto subir ou para quando fazer alguma manipulação no 
+banco de dados. Vai ser essa classe que irá ler o arquivo persistence.xml, deixando instanciada a conexão com o BD.
+
+<version>5.2.6.Final</version>
 
