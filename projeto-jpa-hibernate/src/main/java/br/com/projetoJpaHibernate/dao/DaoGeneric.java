@@ -29,6 +29,7 @@ public class DaoGeneric<E> {
 		transaction.commit();
 	}
 
+	
 	public E pesquisar(E entidade) {
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 
@@ -36,12 +37,14 @@ public class DaoGeneric<E> {
 		return pesquisa;
 	}
 
+	
 	public E pesquisar(Long id, Class<E> entidade) {
 
 		E pesquisa = (E) entityManager.find(entidade, id);
 		return pesquisa;
 	}
 
+	
 	/* Usa-se o método merge() que atualiza e/ou salva no BD */
 	public E atualizar(E entidade) {
 
@@ -56,8 +59,33 @@ public class DaoGeneric<E> {
 
 		/* Salva (ou comita) no banco de dados */
 		transaction.commit();
-		
+
 		return entidadeSalva;
+	}
+
+	
+	public void deletarPorId(E entidade) {
+		try {
+			
+			/* Captura uma transação para a criação do entityManager */
+			EntityTransaction transaction = entityManager.getTransaction();
+			
+			/* Abrir a transação */
+			transaction.begin();
+			
+			Object id = HibernateUtil.getPrimaryKey(entidade);
+			
+			if (id != null) {
+
+				/* Para deletar usa-se o método executeUpdate() */
+				entityManager.createQuery("delete from " + entidade.getClass().getName() + 
+						" where id = " + id).executeUpdate();
+				
+				transaction.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

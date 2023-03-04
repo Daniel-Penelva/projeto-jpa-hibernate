@@ -7,18 +7,18 @@ import br.com.projetoJpaHibernate.model.UsuarioPessoa;
 
 public class UsuarioDaoTeste {
 
-	// @Test
+	//@Test
 	public void usuarioDaoTestSalvar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = new UsuarioPessoa();
-		pessoa.setNome("Paula");
-		pessoa.setSobrenome("Silva");
-		pessoa.setEmail("paula@gmail.com");
-		pessoa.setLogin("paula-silva");
+		pessoa.setNome("Biana");
+		pessoa.setSobrenome("Penelva");
+		pessoa.setEmail("biana@gmail.com");
+		pessoa.setLogin("biana-penelva");
 		pessoa.setSenha("123");
-		pessoa.setIdade(34);
+		pessoa.setIdade(55);
 
 		daoGeneric.salvar(pessoa);
 	}
@@ -48,24 +48,36 @@ public class UsuarioDaoTeste {
 		System.out.println(pessoa);
 	}
 
-	@Test
+	//@Test
 	public void usuarioDaoTestAtualizar() {
 
 		// Cria o entityManager
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
-		
+
 		// Busca o usuário pelo id
 		UsuarioPessoa pessoa = daoGeneric.pesquisar(2L, UsuarioPessoa.class);
-		
+
 		// Seta novos valores
 		pessoa.setIdade(27);
 		pessoa.setEmail("psilva@gmail.com");
-		
+
 		// Chama o método atualizar
 		pessoa = daoGeneric.atualizar(pessoa);
 
 		/* Imprimi o toString */
 		System.out.println(pessoa);
+	}
+
+    @Test
+	public void usuarioDaoTestDeletar() {
+		// Cria o entityManager
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+
+		// Busca o usuário pelo id
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(3L, UsuarioPessoa.class);
+		
+		daoGeneric.deletarPorId(pessoa);
+
 	}
 
 }
