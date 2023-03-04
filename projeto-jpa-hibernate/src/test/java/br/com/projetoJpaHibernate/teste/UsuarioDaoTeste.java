@@ -95,7 +95,7 @@ public class UsuarioDaoTeste {
 		}
 	}
 
-	//@Test
+	// @Test
 	public void testeQueryList() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
@@ -109,15 +109,33 @@ public class UsuarioDaoTeste {
 		}
 	}
 
-	@Test
+	// @Test
 	public void testeQueryListMaxResult() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
-		//List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from UsuarioPessoa order by nome").setMaxResults(4).getResultList();
-		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from UsuarioPessoa order by id").setMaxResults(4).getResultList();
+		// List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from
+		// UsuarioPessoa order by nome").setMaxResults(4).getResultList();
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from UsuarioPessoa order by id")
+				.setMaxResults(4).getResultList();
 
 		for (UsuarioPessoa usuarioPessoa : lista) {
 			System.out.println(usuarioPessoa);
 		}
 	}
+
+	@Test
+	public void testeQueryListParametro() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+
+		// List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery("from UsuarioPessoa where nome = :nome").setParameter("nome","Biana").getResultList();
+		
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager()
+				.createQuery("from UsuarioPessoa where nome = :nome and sobrenome = :sobrenome")
+				.setParameter("nome", "Daniel").setParameter("sobrenome", "Penelva") .getResultList();
+
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
+	}
+
 }
