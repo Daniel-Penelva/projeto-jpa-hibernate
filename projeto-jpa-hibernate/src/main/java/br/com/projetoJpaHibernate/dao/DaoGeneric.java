@@ -101,5 +101,11 @@ public class DaoGeneric<E> {
 
 		return lista;
 	}
+	
+	
+	/* Sendo public o EntityManager é possível acessar de outras partes do projeto */
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
 
 }

@@ -15,12 +15,12 @@ public class UsuarioDaoTeste {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = new UsuarioPessoa();
-		pessoa.setNome("Biana");
-		pessoa.setSobrenome("Penelva");
-		pessoa.setEmail("biana@gmail.com");
-		pessoa.setLogin("biana-penelva");
+		pessoa.setNome("Daniel");
+		pessoa.setSobrenome("Caio");
+		pessoa.setEmail("caio@gmail.com");
+		pessoa.setLogin("daniel-caio");
 		pessoa.setSenha("123");
-		pessoa.setIdade(55);
+		pessoa.setIdade(32);
 
 		daoGeneric.salvar(pessoa);
 	}
@@ -82,7 +82,7 @@ public class UsuarioDaoTeste {
 
 	}
     
-    @Test
+    //@Test
 	public void usuarioDaoTestListarTodos() {
 		// Cria o entityManager
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -94,5 +94,16 @@ public class UsuarioDaoTeste {
 			System.out.println(" --------------------------------------------------------- ");
 		}
 	}
+    
+    @Test
+    public void testeQueryList() {
+    	DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
+		//List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from UsuarioPessoa").getResultList();
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createQuery(" from UsuarioPessoa where nome = 'Daniel'").getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
+    }
 }
