@@ -123,9 +123,11 @@ Para a entidade TelefoneUsuarioPessoa:
    
 Para a entidade UsuarioPessoa:
 
-   @OneToMany(mappedBy = "usuarioPessoa")
+   @OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
    private List<TelefoneUsuarioPesssoa> telefones;
-   
+
+OBS. fetch = FetchType.EAGER --> Para poder consultar, ou seja, trazer numma lista os dados do usuário e do telefone
+
 Modelo Relacional
 
 UsuarioPessoa(id, nome, sobrenome, email, login, senha, idade)

@@ -3,6 +3,7 @@ package br.com.projetoJpaHibernate.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class UsuarioPessoa {
 	 * Anotação para relacionamento de um para muitos, ou seja, um usuário pode ter um ou vários telefones.
 	 * Esse mapeamento seria a chave estrangeira (foreign key)
 	 */
-	@OneToMany(mappedBy = "usuarioPessoa")
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
 	private List<TelefoneUsuarioPesssoa> telefones;
 
 	public Long getId() {
