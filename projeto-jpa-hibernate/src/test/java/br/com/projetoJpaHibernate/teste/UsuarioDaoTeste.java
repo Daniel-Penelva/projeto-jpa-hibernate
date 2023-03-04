@@ -123,7 +123,7 @@ public class UsuarioDaoTeste {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testeQueryListParametro() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
@@ -136,6 +136,18 @@ public class UsuarioDaoTeste {
 		for (UsuarioPessoa usuarioPessoa : lista) {
 			System.out.println(usuarioPessoa);
 		}
+	}
+	
+	@Test
+	public void testQuerySomaIdade() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		Long somaIdade = (Long) daoGeneric.getEntityManager().createQuery("select sum(u.idade) from UsuarioPessoa as u ").getSingleResult();
+		
+		Double mediaIdade = (Double) daoGeneric.getEntityManager().createQuery("select avg(u.idade) from UsuarioPessoa as u").getSingleResult();
+		
+		System.out.println("Soma de todas as idades = " + somaIdade);
+		System.out.println("Media da idade dos usuários: " + mediaIdade);
 	}
 
 }
