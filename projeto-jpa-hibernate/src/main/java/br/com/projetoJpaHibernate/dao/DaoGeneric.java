@@ -25,4 +25,17 @@ public class DaoGeneric<E> {
 		/* Salva (ou comita) no banco de dados */
 		transaction.commit();
 	}
+	
+	public E pesquisar(E entidade) {
+		Object id = HibernateUtil.getPrimaryKey(entidade);
+		
+		E pesquisa = (E) entityManager.find(entidade.getClass(), id);
+		return pesquisa;
+	}
+	
+	public E pesquisar(Long id, Class<E> entidade) {
+		
+		E pesquisa = (E) entityManager.find(entidade, id);
+		return pesquisa;
+	}
 }

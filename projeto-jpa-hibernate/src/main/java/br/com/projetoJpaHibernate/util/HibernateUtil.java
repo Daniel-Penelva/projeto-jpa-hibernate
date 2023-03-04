@@ -31,4 +31,10 @@ public class HibernateUtil {
 		/* Gerenciador de entidade, é ele que vai prover a parte de persistência. */
 		return factory.createEntityManager();
 	}
+	
+	/* Esse método é para ser usado em consultas de chave primária, 
+	 * ou seja, para consultar usuário. Ele retorna a primary key. */
+	public static Object getPrimaryKey(Object entidade) {
+		return factory.getPersistenceUnitUtil().getIdentifier(entidade);
+	}
 }
