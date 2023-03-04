@@ -37,12 +37,32 @@ public class UsuarioDaoTeste {
 		System.out.println(pessoa);
 	}
 
-	@Test
+	// @Test
 	public void usuarioDaoTestBuscar2() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+
+		/* Imprimi o toString */
+		System.out.println(pessoa);
+	}
+
+	@Test
+	public void usuarioDaoTestAtualizar() {
+
+		// Cria o entityManager
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		// Busca o usuário pelo id
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(2L, UsuarioPessoa.class);
+		
+		// Seta novos valores
+		pessoa.setIdade(27);
+		pessoa.setEmail("psilva@gmail.com");
+		
+		// Chama o método atualizar
+		pessoa = daoGeneric.atualizar(pessoa);
 
 		/* Imprimi o toString */
 		System.out.println(pessoa);

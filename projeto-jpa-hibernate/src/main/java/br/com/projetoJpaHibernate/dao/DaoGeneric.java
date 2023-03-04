@@ -7,35 +7,57 @@ import br.com.projetoJpaHibernate.util.HibernateUtil;
 
 public class DaoGeneric<E> {
 
-	/* Cria um entityManager para abrir a conexão com o banco de dados 
-	 * para prover a parte de persistência */
+	/*
+	 * Cria um entityManager para abrir a conexão com o banco de dados para prover a
+	 * parte de persistência
+	 */
 	private EntityManager entityManager = HibernateUtil.geEntityManager();
-	
+
+	/* Usa-se o método persist() que salva no BD */
 	public void salvar(E entidade) {
-		
+
 		/* Captura uma transação para a criação do entityManager */
 		EntityTransaction transaction = entityManager.getTransaction();
-		
+
 		/* Abrir a transação */
 		transaction.begin();
-		
-		/* Persistir no banco os dados do usuário*/
+
+		/* Persistir no banco os dados do usuário */
 		entityManager.persist(entidade);
-		
+
 		/* Salva (ou comita) no banco de dados */
 		transaction.commit();
 	}
-	
+
 	public E pesquisar(E entidade) {
 		Object id = HibernateUtil.getPrimaryKey(entidade);
-		
+
 		E pesquisa = (E) entityManager.find(entidade.getClass(), id);
 		return pesquisa;
 	}
-	
+
 	public E pesquisar(Long id, Class<E> entidade) {
-		
+
 		E pesquisa = (E) entityManager.find(entidade, id);
 		return pesquisa;
 	}
+
+	/* Usa-se o método merge() que atualiza e/ou salva no BD */
+	public E atualizar(E entidade) {
+
+		/* Captura uma transação para a criação do entityManager */
+		EntityTransaction transaction = entityManager.getTransaction();
+
+		/* Abrir a transação */
+		transaction.begin();
+
+		/* Salva e/ou atualiza no banco os dados do usuário */
+		E entidadeSalva = entityManager.merge(entidade);
+
+		/* Salva (ou comita) no banco de dados */
+		transaction.commit();
+		
+		return entidadeSalva;
+	}
+
 }
