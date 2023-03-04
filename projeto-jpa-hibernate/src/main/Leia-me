@@ -108,7 +108,9 @@ Select * From usuario;                            | Select u From Usuario u;
                                                     Usuario é o nome da Classe (com letra maiúscula).
                                                     “u” representa a instancia da Classe Usuário.
 
+---------------------------
 
+Named Query é usada para queryes específicas. Essas queryes são adicionadas no arquivo de entidade.
 
 
 

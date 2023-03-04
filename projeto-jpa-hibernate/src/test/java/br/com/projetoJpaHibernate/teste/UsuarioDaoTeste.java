@@ -138,7 +138,7 @@ public class UsuarioDaoTeste {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testQuerySomaIdade() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
@@ -148,6 +148,28 @@ public class UsuarioDaoTeste {
 		
 		System.out.println("Soma de todas as idades = " + somaIdade);
 		System.out.println("Media da idade dos usuários: " + mediaIdade);
+	}
+	
+	//@Test
+	public void testNameQuery() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createNamedQuery("UsuarioPessoa.todos").getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
+	}
+	
+	@Test
+	public void testNameQueryPorNome() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> lista = daoGeneric.getEntityManager().createNamedQuery("UsuarioPessoa.buscarPorNomes").setParameter("nome", "Daniel").getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+		}
 	}
 
 }
