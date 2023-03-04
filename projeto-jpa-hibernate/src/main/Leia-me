@@ -112,6 +112,28 @@ Select * From usuario;                            | Select u From Usuario u;
 
 Named Query é usada para queryes específicas. Essas queryes são adicionadas no arquivo de entidade.
 
+---------------------------
+
+Para o relacionamento entre as entidades é preciso mapear para ambos os relacionamentos.
+
+Para a entidade TelefoneUsuarioPessoa:
+
+   @ManyToOne(optional = false, fetch = FetchType.EAGER)
+   private UsuarioPessoa usuarioPessoa;
+   
+Para a entidade UsuarioPessoa:
+
+   @OneToMany(mappedBy = "usuarioPessoa")
+   private List<TelefoneUsuarioPesssoa> telefones;
+   
+Modelo Relacional
+
+UsuarioPessoa(id, nome, sobrenome, email, login, senha, idade)
+id referencia ao UsuarioPessoa.
+
+TelefoneUsuarioPessoa(id, tipo, numero, usuarioPessoa)
+id referencia TelefoneUsuarioPessoa
+usuarioPessoa referencia UsuarioPessoa(id)
 
 
 
