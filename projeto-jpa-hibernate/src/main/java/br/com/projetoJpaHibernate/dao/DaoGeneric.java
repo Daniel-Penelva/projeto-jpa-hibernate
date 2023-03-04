@@ -1,5 +1,7 @@
 package br.com.projetoJpaHibernate.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -29,7 +31,6 @@ public class DaoGeneric<E> {
 		transaction.commit();
 	}
 
-	
 	public E pesquisar(E entidade) {
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 
@@ -37,14 +38,12 @@ public class DaoGeneric<E> {
 		return pesquisa;
 	}
 
-	
 	public E pesquisar(Long id, Class<E> entidade) {
 
 		E pesquisa = (E) entityManager.find(entidade, id);
 		return pesquisa;
 	}
 
-	
 	/* Usa-se o método merge() que atualiza e/ou salva no BD */
 	public E atualizar(E entidade) {
 
@@ -63,29 +62,44 @@ public class DaoGeneric<E> {
 		return entidadeSalva;
 	}
 
-	
 	public void deletarPorId(E entidade) {
 		try {
-			
+
 			/* Captura uma transação para a criação do entityManager */
 			EntityTransaction transaction = entityManager.getTransaction();
-			
+
 			/* Abrir a transação */
 			transaction.begin();
-			
+
 			Object id = HibernateUtil.getPrimaryKey(entidade);
-			
+
 			if (id != null) {
 
 				/* Para deletar usa-se o método executeUpdate() */
-				entityManager.createQuery("delete from " + entidade.getClass().getName() + 
-						" where id = " + id).executeUpdate();
-				
+				entityManager.createQuery("delete from " + entidade.getClass().getName() + " where id = " + id)
+						.executeUpdate();
+
 				transaction.commit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<E> listarTodos(Class<E> entidade) {
+
+		/* Captura uma transação para a criação do entityManager */
+		EntityTransaction transaction = entityManager.getTransaction();
+
+		transaction.begin();
+
+		/* entidade.getName() é o UsuarioPessoa
+		 * A função getResultList() vai listar todos os usuários no banco de dados */
+		List<E> lista = entityManager.createQuery("from " + entidade.getName()).getResultList();
+
+		transaction.commit();
+
+		return lista;
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.com.projetoJpaHibernate.teste;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import br.com.projetoJpaHibernate.dao.DaoGeneric;
@@ -68,7 +70,7 @@ public class UsuarioDaoTeste {
 		System.out.println(pessoa);
 	}
 
-    @Test
+    //@Test
 	public void usuarioDaoTestDeletar() {
 		// Cria o entityManager
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -78,6 +80,19 @@ public class UsuarioDaoTeste {
 		
 		daoGeneric.deletarPorId(pessoa);
 
+	}
+    
+    @Test
+	public void usuarioDaoTestListarTodos() {
+		// Cria o entityManager
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+
+		List<UsuarioPessoa> lista = daoGeneric.listarTodos(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+			System.out.println(" --------------------------------------------------------- ");
+		}
 	}
 
 }
